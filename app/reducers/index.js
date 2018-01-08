@@ -226,10 +226,11 @@ const user = (state = initialValues, action) => {
       eventId: action.active.substring(action.active.lastIndexOf('/') + 1)
     });
   case GOT_USER:
+    console.log('6 index redux GOT_USER');
     return Object.assign({}, state, action.json, {
-      ajaxInProgress: false,
-      imageUploadInProgress: false
-    });
+        ajaxInProgress: false,
+        imageUploadInProgress: false
+      });
   case REQUEST_EDIT_USER:
     console.log('_______________ index redux REQUEST_EDIT_USER __________________________________');
     console.log('REQUEST_EDIT_USER state links: ' + JSON.stringify(state.links));

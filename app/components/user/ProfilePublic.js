@@ -10,6 +10,8 @@ import AddressesPublic from '../place/AddressesPublic';
 import Match from 'preact-router/match';
 import Languages from '../language/Languages';
 import { connect } from 'preact-redux';
+import renderLabel from '../renderLabel';
+
 import {
   fetchCountries,
   editUser
@@ -31,7 +33,7 @@ let ProfilePublicForm = props => {
   const onSwitchLanguage = (e) => {
     e.preventDefault();
     selectedLanguage = e.target.__preactattr_.href;
-    console.log( 'selectedLanguage:' + selectedLanguage );
+    console.log('selectedLanguage:' + selectedLanguage);
   };
   return (
     <div>
@@ -46,6 +48,10 @@ let ProfilePublicForm = props => {
             name="_id"
             component="input"
             type="hidden"
+          />
+          <Field
+            name="errorMessage"
+            component={renderLabel}
           />
           <h3>
             <FormattedMessage
@@ -91,7 +97,7 @@ let ProfilePublicForm = props => {
               />
             </p>
           </div>
-          { console.log('sl:' + selectedLanguage)}
+          {console.log('sl:' + selectedLanguage)}
           { /* abouts start */}
           <FieldArray
             name="abouts"
@@ -168,9 +174,9 @@ const mapStateToProps = (state, props) => {
   // add other languages abouts
   let abouts = selector(state, 'abouts');
   if (abouts && abouts.length < Languages.length) {
-    for (let l=0; l < Languages.length; l++) {
+    for (let l = 0; l < Languages.length; l++) {
       let found = false;
-      for (let a=0; a < abouts.length; a++) {
+      for (let a = 0; a < abouts.length; a++) {
         if (abouts[a].lang == Languages[l].code) {
           console.log(abouts[a].lang);
           found = true;
