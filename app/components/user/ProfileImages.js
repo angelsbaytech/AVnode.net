@@ -70,7 +70,7 @@ const ProfileImagesForm = ({
                                 null
                             }
                             <ImageDropzone
-                                imageUploadInProgress={(user && user.profileImageUploadInProgress)}
+                                imageUploadInProgress={(user && user.imageUploadInProgress)}
                                 onDrop={onProfileImageDrop(user._id)}
                             />
                         </div>
@@ -93,7 +93,7 @@ const ProfileImagesForm = ({
                                 null
                             }
                             <ImageDropzone
-                                imageUploadInProgress={(user && user.teaserImageUploadInProgress)}
+                                imageUploadInProgress={(user && user.imageUploadInProgress)}
                                 onDrop={onTeaserImageDrop(user._id)}
                             />
                         </div>

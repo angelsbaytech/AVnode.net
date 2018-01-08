@@ -228,7 +228,7 @@ const user = (state = initialValues, action) => {
   case GOT_USER:
     return Object.assign({}, state, action.json, {
       ajaxInProgress: false,
-      profileImageUploadInProgress: false
+      imageUploadInProgress: false
     });
   case REQUEST_EDIT_USER:
     console.log('_______________ index redux REQUEST_EDIT_USER __________________________________');
@@ -237,11 +237,11 @@ const user = (state = initialValues, action) => {
     return state;
   case REQUEST_ADD_USERPROFILEIMAGE:
     return Object.assign({}, state, {
-      profileImageUploadInProgress: true
+      imageUploadInProgress: true
     });
   case REQUEST_ADD_USERTEASERIMAGE:
     return Object.assign({}, state, {
-      teaserImageUploadInProgress: true
+      imageUploadInProgress: true
     });
   case REQUEST_ADD_PERFORMANCE:
     return Object.assign({}, state, {
