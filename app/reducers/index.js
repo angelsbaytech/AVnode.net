@@ -226,10 +226,11 @@ const user = (state = initialValues, action) => {
       eventId: action.active.substring(action.active.lastIndexOf('/') + 1)
     });
   case GOT_USER:
+    console.log('6 index redux GOT_USER');
     return Object.assign({}, state, action.json, {
-      ajaxInProgress: false,
-      profileImageUploadInProgress: false
-    });
+        ajaxInProgress: false,
+        imageUploadInProgress: false
+      });
   case REQUEST_EDIT_USER:
     console.log('_______________ index redux REQUEST_EDIT_USER __________________________________');
     console.log('REQUEST_EDIT_USER state links: ' + JSON.stringify(state.links));
@@ -237,11 +238,11 @@ const user = (state = initialValues, action) => {
     return state;
   case REQUEST_ADD_USERPROFILEIMAGE:
     return Object.assign({}, state, {
-      profileImageUploadInProgress: true
+      imageUploadInProgress: true
     });
   case REQUEST_ADD_USERTEASERIMAGE:
     return Object.assign({}, state, {
-      teaserImageUploadInProgress: true
+      imageUploadInProgress: true
     });
   case REQUEST_ADD_PERFORMANCE:
     return Object.assign({}, state, {

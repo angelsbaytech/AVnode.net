@@ -102,7 +102,7 @@ export const REQUEST_ADD_PERFORMANCE_CATEGORY='REQUEST_ADD_PERFORMANCE_CATEGORY'
 // Wrap fetch with some default settings, always
 // return parsed JSON…
 const fetch = (path, options = {}, json = true) => {
-  console.log('fetch, path:' + path);
+  console.log('4 ACTION fetch, path:' + path);
   const opts = Object.assign({}, {
     credentials: 'same-origin'
   }, options);
@@ -137,11 +137,13 @@ export function eventNavigate(active) {
 }
 
 export function gotUser(json) {
+  console.log('5 ACTION gotUser');
   return { type: GOT_USER, json };
 }
 
 export function fetchUser() {
   return dispatch => {
+    console.log('3 ACTION fetchUser');
     return fetch('/account/api/user')
       .then(json => dispatch(gotUser(json)));
   };

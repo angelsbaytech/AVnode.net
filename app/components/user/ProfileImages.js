@@ -1,10 +1,11 @@
 import { h } from 'preact';
-import { reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { injectIntl, FormattedMessage } from 'preact-intl';
 import ImageDropzone from '../ImageDropzone';
 import Layout from '../Layout';
 import ProfileNav from './ProfileNav';
 import Match from 'preact-router/match';
+import renderLabel from '../renderLabel';
 
 const ProfileImagesForm = ({
     user,
@@ -15,15 +16,15 @@ const ProfileImagesForm = ({
     addUserTeaserImage
     }) => {
 
-  const onProfileImageDrop = (userId) => (files, _something, _ev) => {
-    addUserProfileImage(userId, files[0]);
-  };
+    const onProfileImageDrop = (userId) => (files, _something, _ev) => {
+        addUserProfileImage(userId, files[0]);
+    };
 
-  const onTeaserImageDrop = (userId) => (files, _something, _ev) => {
-    addUserTeaserImage(userId, files[0]);
-  };
+    const onTeaserImageDrop = (userId) => (files, _something, _ev) => {
+        addUserTeaserImage(userId, files[0]);
+    };
 
-  return (
+    return (
         <div>
             <div className="container-fluid">
                 <Match>
@@ -33,23 +34,27 @@ const ProfileImagesForm = ({
             <Layout>
                 <form onSubmit={handleSubmit(saveProfile)}>
                     <fieldset className="form-group">
+                        <Field
+                            name="errorMessage"
+                            component={renderLabel}
+                        />
                         <legend>
                             <FormattedMessage
                                 id="images"
                                 defaultMessage="Images"
                             />
                         </legend>
-                        {user.file ? 
+                        {user.file ?
                             <div className="form-group">
                                 <label>Thumbnail</label>
                                 <p></p>
                                 <img
-                                className="img-small mb-3"
-                                src={`${user.squareThumbnailUrl}`}       
-                                alt={`image of ${user.stagename}`}
+                                    className="img-small mb-3"
+                                    src={`${user.squareThumbnailUrl}`}
+                                    alt={`image of ${user.stagename}`}
                                 />
                             </div>
-                            : 
+                            :
                             null
                         }
                         <div className="form-group">
@@ -70,7 +75,7 @@ const ProfileImagesForm = ({
                                 null
                             }
                             <ImageDropzone
-                                imageUploadInProgress={(user && user.profileImageUploadInProgress)}
+                                imageUploadInProgress={(user && user.imageUploadInProgress)}
                                 onDrop={onProfileImageDrop(user._id)}
                             />
                         </div>
@@ -93,7 +98,7 @@ const ProfileImagesForm = ({
                                 null
                             }
                             <ImageDropzone
-                                imageUploadInProgress={(user && user.teaserImageUploadInProgress)}
+                                imageUploadInProgress={(user && user.imageUploadInProgress)}
                                 onDrop={onTeaserImageDrop(user._id)}
                             />
                         </div>
@@ -101,10 +106,10 @@ const ProfileImagesForm = ({
                 </form>
             </Layout >
         </div>
-  );
+    );
 };
 export default injectIntl(reduxForm({
-  form: 'userImages',
-  enableReinitialize: true,
-  keepDirtyOnReinitialize: true
+    form: 'userImages',
+    enableReinitialize: true,
+    keepDirtyOnReinitialize: true
 })(ProfileImagesForm));
